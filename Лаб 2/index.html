@@ -9,17 +9,17 @@
 <body>
     <h1>Список задач</h1>
     
-    <form id="add-task-form">
-        <input type="text" id="task-add" placeholder="Новая задача..." required>
-        <button type="submit" id="submit">Добавить задачу</button>
+    <form id="task-form">
+        <input type="text" id="task-input">
+        <button type="submit" id="task-submit">Добавить</button>
     </form>
     
-    <div id="tasks-list"></div>
+    <div id="task-list"></div>
     
-    <div class="filters">
+    <div class="filter-btns">
         <button id="all-btn">Показать все</button>
-        <button id="done-btn">Выполнено</button>
-        <button id="in-progress-btn">Не выполнено</button>
+        <button id="completed-btn">Выполнено</button>
+        <button id="in-progress-btn">Невыполнено</button>
     </div>
     
     <script src="app.js"></script>

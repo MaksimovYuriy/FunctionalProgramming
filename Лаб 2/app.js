@@ -1,118 +1,89 @@
-const taskInput = document.getElementById('task-add');
-const tasksList = document.getElementById('tasks-list');
-const showAllBtn = document.getElementById('all-btn');
-const showDoneBtn = document.getElementById('done-btn');
-const showNotDoneBtn = document.getElementById('in-progress-btn');
+// Определение кнопок
+
+const task_input = document.getElementById('task-input')
+
+const task_list = document.getElementById('task-list')
+
+const all_tasks_btn = document.getElementById('all-btn')
+const completed_tasks_btn = document.getElementById('completed-btn')
+const in_progress_tasks_btn = document.getElementById('in-progress-btn')
+
+// Все задачи
 
 let tasks = []
 
-// Чистые функции для управления списком задач
+// Основные методы
 
-// Добавление задачи
-const addTask = (title) => {
-    const newTask = { id: tasks.length + 1, title, done: false }
-    tasks = [...tasks, newTask]
-    renderTasks()
-};
+const add_task = (title) => {
+    const new_task = { id: tasks.length + 1, title: title, status: false }
+    tasks = [...tasks, new_task]
+    render_tasks()
+}
 
-// Удаление задачи
-const deleteTask = (taskId) => {
-    tasks = tasks.filter(task => task.id !== taskId)
-    renderTasks()
-};
+const delete_task = (id) => {
+    tasks = tasks.filter(task => task.id !== id)
+    render_tasks()
+}
 
-// Смена статуса задачи
-const toggleTaskStatus = (taskId) => {
+const change_task_status = (id) => {
     tasks = tasks.map(task => {
-        if (task.id === taskId) {
-            return { ...task, done: !task.done }; // Изменяем статус задачи
+        if(task.id === id){
+            return { ...task, status: !task.status }
         }
         return task
     })
-    renderTasks()
-};
+    render_tasks()
+}
 
-// Рендеринг задачи - функция высшего порядка
-const renderTasks = () => {
-    
-    tasksList.innerHTML = ''
+const render_tasks = (predicate = () => true) => {
+    task_list.innerHTML = ''
 
     tasks.forEach(task => {
-        const taskItem = document.createElement('li')
-        taskItem.className = 'task'
-        
-        const checkbox = document.createElement('input')
-        checkbox.type = 'checkbox'
-        checkbox.checked = task.done
-        checkbox.addEventListener('change', () => toggleTaskStatus(task.id))
-        
-        const label = document.createElement('label')
-        label.textContent = task.title
-        
-        const deleteButton = document.createElement('button')
-        deleteButton.textContent = 'X'
-        deleteButton.addEventListener('click', () => deleteTask(task.id))
-        
-        taskItem.appendChild(checkbox)
-        taskItem.appendChild(label)
-        taskItem.appendChild(deleteButton)
-        
-        tasksList.appendChild(taskItem)
-    });
-};
+        if(predicate(task)){
+            const taskItem = document.createElement('li')
+            taskItem.className = 'task'
+            
+            const checkbox = document.createElement('input')
+            checkbox.type = 'checkbox'
+            checkbox.checked = task.status
+            checkbox.addEventListener('change', () => change_task_status(task.id))
+            
+            const label = document.createElement('label')
+            label.textContent = task.title
+            
+            const deleteButton = document.createElement('button')
+            deleteButton.textContent = 'X'
+            deleteButton.addEventListener('click', () => delete_task(task.id))
+            
+            taskItem.appendChild(checkbox)
+            taskItem.appendChild(label)
+            taskItem.appendChild(deleteButton)
+            
+            task_list.appendChild(taskItem)
+        }
+    })
+}
 
-// Назначение прослушивателей нажатий кнопок
-// Прослушиватели для удаление и смены статуса устанавливаются при отрисовке списка
+// Прослушиватели
 
-// Добавление задачи
-document.getElementById('add-task-form').addEventListener('submit', event => {
+document.getElementById('task-form').addEventListener('submit', event => {
     event.preventDefault()
-    
-    if (taskInput.value.trim() !== '') {
-        addTask(taskInput.value)
-        taskInput.value = ''
+    if(task_input.value.trim() !== ''){
+        add_task(task_input.value)
+        task_input.value = ''
     }
-});
+})
 
-// Все задачи
-showAllBtn.addEventListener('click', () => {
-    renderTasks()
-});
+all_tasks_btn.addEventListener('click', event => {
+    render_tasks()
+})
 
-// Выполненные задачи
-showDoneBtn.addEventListener('click', () => {
-    filterTasks(task => task.done)
-});
+completed_tasks_btn.addEventListener('click', event => {
+    render_tasks(task => task.status === true)
+})
 
-// Невыполненные задачи
-showNotDoneBtn.addEventListener('click', () => {
-    filterTasks(task => !task.done)
-});
+in_progress_tasks_btn.addEventListener('click', event => {
+    render_tasks(task => task.status === false)
+})
 
-// Фильтрация - функция высшего порядка
-const filterTasks = predicate => {
-    const filteredTasks = tasks.filter(predicate)
-    tasksList.innerHTML = ''
-    filteredTasks.forEach(task => {
-        const taskItem = document.createElement('li')
-        taskItem.className = 'task'
-        
-        const checkbox = document.createElement('input')
-        checkbox.type = 'checkbox'
-        checkbox.checked = task.done
-        checkbox.disabled = true
-        
-        const label = document.createElement('label')
-        label.textContent = task.title
-        
-        const deleteButton = document.createElement('button')
-        deleteButton.textContent = 'X'
-        deleteButton.style.visibility = 'hidden'
-        
-        taskItem.appendChild(checkbox);
-        taskItem.appendChild(label);
-        taskItem.appendChild(deleteButton)
-        
-        tasksList.appendChild(taskItem)
-    });
-};
+
