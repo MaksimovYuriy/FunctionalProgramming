@@ -53,8 +53,8 @@ const yuras: Person[] = [
     { name: 'MegaYura', age: 22 }
 ];
 
-const sorted = array_sort(yuras, 'name');
-console.log(sorted)
+const sorted = array_sort(yuras, 'age');
+console.log(sorted[0], sorted[1], sorted[2])
 
 // Логирование перед вызовом функции
 function add(a: number, b: number): number {

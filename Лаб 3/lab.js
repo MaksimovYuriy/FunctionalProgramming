@@ -10,23 +10,17 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     return to.concat(ar || Array.prototype.slice.call(from));
 };
 function filter_multiples(array, multiple) {
-    return array.filter(function (number) { return number % multiple === 0; });
+    return array.filter(function (num) { return num % multiple === 0; });
 }
 // Функция, которая принимает массив строк и возвращает новую строку, 
 // содержащую все строки, объединенные заданным разделителем.
-function join_strs(array, separator) {
-    return array.join(separator);
+function join_strs(array, sep) {
+    return array.join(sep);
 }
 // Функция, которая принимает массив объектов и возвращает новый массив, 
 // отсортированный по значению определенного свойства.
 function array_sort(array, property) {
-    return __spreadArray([], array, true).sort(function (a, b) {
-        if (a[property] > b[property])
-            return 1;
-        if (a[property] < b[property])
-            return -1;
-        return 0;
-    });
+    return __spreadArray([], array, true).sort(function (a, b) { return a[property] > b[property] ? 1 : -1; });
 }
 // Создайте функцию, которая принимает другую функцию в качестве аргумента и возвращает новую функцию, 
 // которая выполняет логирование перед вызовом исходной функции.
@@ -54,8 +48,8 @@ var yuras = [
     { name: 'NeYura', age: 19 },
     { name: 'MegaYura', age: 22 }
 ];
-var sorted = array_sort(yuras, 'name');
-console.log(sorted);
+var sorted = array_sort(yuras, 'age');
+console.log(sorted[0], sorted[1], sorted[2]);
 // Логирование перед вызовом функции
 function add(a, b) {
     return a + b;
