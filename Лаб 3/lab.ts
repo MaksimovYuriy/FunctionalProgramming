@@ -1,26 +1,22 @@
 // Функция, которая принимает массив чисел и возвращает новый массив, 
 // содержащий только числа, кратные заданному числу.
 
-function filter_multiples<T extends number>(array: T[], multiple: T): T[] {
-    return array.filter(number => number % multiple === 0)
+function filter_multiples(array: number[], multiple: number): number[] {
+    return array.filter(num => num % multiple === 0)
 }
 
 // Функция, которая принимает массив строк и возвращает новую строку, 
 // содержащую все строки, объединенные заданным разделителем.
 
-function join_strs<T extends string>(array: T[], separator: T): string {
-    return array.join(separator)
+function join_strs(array: string[], sep: string): string {
+    return array.join(sep)
 }
 
 // Функция, которая принимает массив объектов и возвращает новый массив, 
 // отсортированный по значению определенного свойства.
 
-function array_sort<T extends Record<string, any>>(array: T[], property: keyof T): T[] {
-    return [...array].sort((a, b) => {
-        if(a[property] > b[property]) return 1;
-        if(a[property] < b[property]) return -1;
-        return 0;
-    })
+function array_sort<T>(array: T[], property: keyof T): T[] {
+    return [...array].sort((a, b) => a[property] > b[property] ? 1 : -1)
 }
 
 // Создайте функцию, которая принимает другую функцию в качестве аргумента и возвращает новую функцию, 
