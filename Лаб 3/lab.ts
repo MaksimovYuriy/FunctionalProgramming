@@ -33,7 +33,7 @@ function logDecorator<T extends (...args: any[]) => any>(func: T): T {
 
 // Числа, кратные 3
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const multiples = filter_multiples(numbers, 2);
+const multiples = filter_multiples(numbers, 3);
 console.log(multiples);
 
 // Объединение строк

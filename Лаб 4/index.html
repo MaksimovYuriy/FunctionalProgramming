@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
+            <div id="operation-display" class="operation-display"></div>
+            <input id="display" type="text" readonly>
+        </div>
+        <div class="buttons">
+            <button class="btn button-num" onclick="handleButtonClick('7')">7</button>
+            <button class="btn button-num" onclick="handleButtonClick('8')">8</button>
+            <button class="btn button-num" onclick="handleButtonClick('9')">9</button>
+            <button class="btn button-op" onclick="handleOperation('divide')">/</button>
+            <button class="btn button-num" onclick="handleButtonClick('4')">4</button>
+            <button class="btn button-num" onclick="handleButtonClick('5')">5</button>
+            <button class="btn button-num" onclick="handleButtonClick('6')">6</button>
+            <button class="btn button-op" onclick="handleOperation('multiply')">*</button>
+            <button class="btn button-num" onclick="handleButtonClick('1')">1</button>
+            <button class="btn button-num" onclick="handleButtonClick('2')">2</button>
+            <button class="btn button-num" onclick="handleButtonClick('3')">3</button>
+            <button class="btn button-op" onclick="handleOperation('subtract')">-</button>
+            <button class="btn button-op" onclick="handleButtonClick('.')">.</button>
+            <button class="btn button-num" onclick="handleButtonClick('0')">0</button>
+            <button class="btn button-op" onclick="handleOperation('add')">+</button>
+            <button class="btn button-op" onclick="handleOperation('power')">^</button>
+            <button class="btn button-op" onclick="handleSqrt()">√</button>
+            <button class="btn button-op" onclick="handleClear()">C</button>
+            <button class="btn button-op" onclick="handleSignChange()">+/-</button>
+            <button class="btn button-equal" onclick="handleEqual()">=</button>
+        </div>
+    </div>    
+    <script src="app.js"></script>
+</body>
+</html>
