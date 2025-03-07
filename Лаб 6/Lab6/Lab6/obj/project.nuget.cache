@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "9JWbUsszBU8=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\yuram\\OneDrive\\Desktop\\Функционалка\\Репозиторий\\Лаб 6\\Lab6\\Lab6\\Lab6.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\yuram\\.nuget\\packages\\fsharp.core\\8.0.401\\fsharp.core.8.0.401.nupkg.sha512"
+  ],
+  "logs": []
+}
